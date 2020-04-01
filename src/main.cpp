@@ -1,7 +1,4 @@
 #include "material_segmentation/base_segmentation.h"
-#include "material_segmentation/eucledian_cluster_extraction.h"
-#include "material_segmentation/plane_segmentation.h"
-#include "material_segmentation/region_growing_segmentation.h"
 #include "material_segmentation/super_clustering_segmentation.h"
 
 std::unique_ptr<BaseSegmentation> segmentation_type = NULL;
@@ -10,15 +7,6 @@ bool set_segmentation_method(std::string segmentation_method) {
   if (segmentation_method.compare("base") == 0) {
     ROS_INFO("Using base class segmentation");
     segmentation_type.reset(new BaseSegmentation());
-  } else if (segmentation_method.compare("plane") == 0) {
-    ROS_INFO("Using plane class segmentation");
-    segmentation_type.reset(new PlaneSegmentation());
-  } else if (segmentation_method.compare("eucledian") == 0) {
-    ROS_INFO("Using eucledian class segmentation");
-    segmentation_type.reset(new EucledianClusterExtraction());
-  } else if (segmentation_method.compare("region") == 0) {
-    ROS_INFO("Using region class segmentation");
-    segmentation_type.reset(new RegionGrowingSegmentation());
   } else if (segmentation_method.compare("superclustering") == 0) {
     ROS_INFO("Using supervoxel clustering segmentation");
     segmentation_type.reset(new SuperClusteringSegmentation());
