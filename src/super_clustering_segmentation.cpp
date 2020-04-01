@@ -31,6 +31,8 @@ bool SuperClusteringSegmentation::update_parameters_cb(
   convexity_criterion = req.convexity_criterion;
   adapt_lambda = req.adapt_lambda;
   equalization = req.equalization;
+  
+  res.success = true;
   return true;
 }
 
@@ -42,9 +44,9 @@ void SuperClusteringSegmentation::segment_scene(
     return;
 
   if (!(adapt_lambda || equalization)) {
-    adapt_lambda = true;
     ROS_DEBUG(
         "No merging method specified, Adaptive Lambda is going to be used\n");
+    adapt_lambda = true;
   } else if (adapt_lambda && equalization) {
     ROS_ERROR("Only one merging method can be specified at a time, choose "
               "either adapt_lambda or equalization\n");

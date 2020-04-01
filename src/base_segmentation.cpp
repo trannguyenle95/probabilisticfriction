@@ -29,6 +29,8 @@ bool BaseSegmentation::update_parameters_cb(
   x_cutoff = req.x_cutoff;
   y_cutoff = req.y_cutoff;
   z_cutoff = req.z_cutoff;
+
+  res.success = true;
   return true;
 }
 
